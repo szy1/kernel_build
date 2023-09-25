@@ -45,6 +45,7 @@ jobs:
          
           make ${args} ${{ env.KERNEL_TARGET }}_defconfig
           make -j$(($(getconf _NPROCESSORS_ONLN) * 2)) ${args}
+          ls
 
       - name: Package kernel
         run: |
