@@ -45,8 +45,14 @@ jobs:
           
           make ${args} ${{ env.KERNEL_TARGET }}_defconfig
           # make -j$(($(getconf _NPROCESSORS_ONLN) * 2)) ${args}
+          sed -i 's/CONFIG_MODVERSIONS=y/# CONFIG_MODVERSIONS is not set/g' .config
+          sed -i 's/CONFIG_MODULE_SIG=y/# CONFIG_MODULE_SIG is not set/g' .config
+          sed -i 's/CONFIG_MODULE_SIG_FORCE=y/# CONFIG_MODULE_SIG_FORCE is not set/g' .config
+          sed -i 's/CONFIG_KASAN_STACK_ENABLE=y/# CONFIG_KASAN_STACK_ENABLE is not set/g' .config
+          sed -i 's/CONFIG_KASAN_STACK=1/# CONFIG_KASAN_STACK is not set/g' .config
+
           cat /home/runner/work/kernel_build/kernel_build/out/.config
-          ls
+        
 
       - name: Package kernel
         run: |
