@@ -45,6 +45,7 @@ jobs:
           
           make ${args} ${{ env.KERNEL_TARGET }}_defconfig
           # make -j$(($(getconf _NPROCESSORS_ONLN) * 2)) ${args}
+          cat /home/runner/work/kernel_build/kernel_build/out/.config
           ls
 
       - name: Package kernel
